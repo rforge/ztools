@@ -1,0 +1,29 @@
+import("stats","graphics","utils","SpatialExtremes", "ggplot2", "lubridate", "mice", "optimx", "mevd")
+
+importFrom("optimx", "optimx")
+importFrom("SpatialExtremes", "qgev","gevmle")
+importFrom("mice", "mice","complete")
+
+export(
+  "cond_returnlevels",
+  "cond_returnlevel_map",
+  "cond_returnlevel_plot",
+  "conf.int",
+  "get_data_from_Robj",
+  "GEVparameters_from_models",
+  "GEVparameters_map",
+  "MEVparameters_from_models",
+  "model_difference_map",
+  "model_selection",
+  "model_selection_MEV",
+  "optimizer_biv_ext_gauss_model",
+  "optimizer_biv_ext_t_model",
+  "optimizer_biv_hr_model",
+  "optimizer_smooth_model",
+  "optimizer_smooth_model_MEV_mle",
+  "optimizer_smooth_model_MEV_pwm",
+  "returnlevel_map",
+  "returnlevel_plot",
+  "returnlevels"
+)
+

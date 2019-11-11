@@ -1,0 +1,11 @@
+Package: SpatialModelsZAMG
+Type: Package
+Title: Spatial Modeling of Extreme Events
+Version: 1.0.2
+Date: 2018-10-01
+Authors@R: c(person("Harald", "Schellander", role = c("aut"), email = "harald.schellander@zamg.ac.at"),
+             person("Simon", "Gstoehl", role = c("cre"), email = "simon.gstoehl@vol.at"))
+Maintainer: Harald Schellander <harald.schellander@zamg.ac.at>
+Description: The package was developed for spatial modeling of extreme snow depth (sd) and snow water equivalent (swe) in Austria, but can in principle be used for any kind of extreme events.      There is a function for model selection, and several functions for optimization of the model coefficients, like via smooth modeling, bivariate Huesler-Reiss, bivariate Extremal-Gaussian or      bivariate Extremal-t model. Furthermore, return levels can be calculated and maps can be plotted. For bivariate models, there is also the possibility to calculate and plot conditional return levels.
+License: GPL (>= 2)
+Depends: R (>= 3.1.0), SpatialExtremes, optimx, mice, lubridate, ggplot2, mevd
