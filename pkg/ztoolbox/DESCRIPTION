@@ -1,0 +1,10 @@
+Package: ztoolbox
+Version: 0.1-0
+Date: 2019-11-15
+Title: Convenient functions for daily work at ZAMG
+Authors@R: c(person("Harald", "Schellander", role = c("aut", "cre"), email = "harald.schellander@zamg.ac.at"))
+Maintainer: Harald Schellander <harald.schellander@zamg.ac.at>
+Depends: R (>= 3.4.0)
+Imports: stats, graphics
+Description: Useful functions that make daily work easier at ZAMG.
+License: GPL-2 | GPL-3
