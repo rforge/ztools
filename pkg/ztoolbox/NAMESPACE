@@ -1,6 +1,8 @@
-import("stats","graphics")
+import("stats","graphics","colorspace")
 export(
-  "nearest_gridpoint" 
+  "nearest_gridpoint",
+  "zcolors",
+  "show_palettes"
 )
 #importFrom("EnvStats","eweibull")
 
