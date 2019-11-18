@@ -1,14 +1,13 @@
 #-------------------------------------------------------------------------
 # convenient selection of colors based on HCL color space
 #-------------------------------------------------------------------------
-zcolors <- function(n, parameter = c("std","rain","snow","temperature","terrain"), type=c("qualitative","sequential","diverge"), plot = FALSE, ...){
+zcolors <- function(n, parameter = c("std","rain","snow","temperature","terrain"), type=c("qualitative","sequential","diverge","warm","cold"), plot = FALSE, ...){
     
      stopifnot( is.numeric(n) )
      parameter <- match.arg(parameter)
      type <- match.arg(type)
      
-     colors <- define_colors(n, ...)
-     pal <- colors[[parameter]][[type]]
+     pal <- define_colors(n, parameter, type, ...)
      
      if(plot)
           image(matrix(1:n),col=pal,main=paste(parameter,type),
@@ -19,13 +18,12 @@ zcolors <- function(n, parameter = c("std","rain","snow","temperature","terrain"
 
 
 
-show_palettes <- function(n = 10){
-     colors <- define_colors(n)
-     i <- 1
+show_palettes <- function(n = 10, parameter = c("std","rain","snow","temperature","terrain"), type = c("qualitative","sequential","diverge","warm","cold")){
+
      palettes <- list()
-     for(p in names(colors)){
-          for(t in names(colors[[p]])){
-               pal <- colors[[p]][[t]]
+     for(p in parameter){
+          for(t in type){
+               pal <- define_colors(n, p, t)
                palettes[[paste0(p," ",t)]] <- pal
           }
      }
@@ -45,36 +43,35 @@ show_palettes <- function(n = 10){
 }
 
 
-define_colors <- function(n, ...){
-     
-     colors <- list(
-          std = list(
-               qualitative = qualitative_hcl(n,"Dark3", ...), 
-               sequential = sequential_hcl(n, "Lajolla", ...),
-               diverge = diverge_hcl(n,"Cyan-Magenta", ...) 
-          ),
-          rain = list(
-               qualitative = NULL,
-               sequential = sequential_hcl(n, "Purple-Yellow", ...),
-               diverge = diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7)
-          ),
-          snow = list(
-               qualitative = NULL,
-               sequential = sequential_hcl(n, "Blues", ...),
-               diverge = diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7)
-         ),
-          temperature = list(
-               qualitative = NULL,
-               sequential = sequential_hcl(n, "Purple-Yellow", p1 = 1.3, c2 = 20),
-               diverge = diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7)
-          ),
-          terrain = list(
-               qualitative = NULL,
-               sequential = sequential_hcl(n, "Terrain", ...),
-               diverge = NULL
-          )
+define_colors <- function(n, p, t, ...){
+     pal <- NULL
+     switch(p,
+            std = switch(t,
+                         qualitative = { pal <- qualitative_hcl(n,"Dark3", ...) } ,
+                         sequential = { pal <- sequential_hcl(n, "Lajolla", ...) } ,
+                         diverge = { pal <- diverge_hcl(n,"Cyan-Magenta", ...) } 
+            ),
+            rain = switch(t,
+                          sequential = { pal <- sequential_hcl(n, "Purple-Yellow", p1 = 1.3, c2 = 20, ...) } ,
+                          diverge = { pal <- diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7, ...) } 
+            ),
+            snow = switch(t,
+                          sequential = { pal <- sequential_hcl(n, "Blues") } ,
+                          diverge = { pal <- diverge_hcl(n, h = c(260, 0), l = c(30, 90), power = 0.7, ...) } 
+            ),
+            temperature = switch(t,
+                                 sequential = { pal <- sequential_hcl(n, 'Purple-Yellow', p1 = 1.3, c2 = 20, ...) } ,
+                                 diverge = { pal <- diverge_hcl(n, h = c(255, 12), c = c(50, 80), l = c(20, 97), power = c(1, 1.3), ...) } ,
+                                 warm = { pal <- sequential_hcl(n, h = 10, c = c(65, 100, NA), l = c(20, 97), power = 1.1, rev = TRUE, ...) } ,
+                                 cold = { pal <- sequential_hcl(n, h = 245, c = c(50, 75, NA), l = c(20, 98), power = 0.8, rev = TRUE, ...) } 
+            ),
+            terrain = switch(t,
+                             sequential = { pal <- sequential_hcl(n, "Terrain", ...) } 
+                             
+            )
      )
-     return(colors)
+     return(pal)
+
 }
 
 

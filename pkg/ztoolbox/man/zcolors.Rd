@@ -9,9 +9,10 @@
 }
 \usage{
 zcolors(n, parameter = c("std","rain","snow","temperature","terrain"), 
-  type=c("qualitative","sequential","diverge"), plot = FALSE, ...)
+  type=c("qualitative","sequential","diverge","warm","cold"), plot = FALSE, ...)
   
-show_palettes(n = 10)  
+show_palettes(n = 10, parameter = c("std","rain","snow","temperature","terrain"), 
+  type = c("qualitative","sequential","diverge","warm","cold"))  
  
 
 }
@@ -19,13 +20,13 @@ show_palettes(n = 10)
 \arguments{
      \item{n}{ number of colors.}
      \item{parameter}{ one of \code{std}, \code{rain}, \code{snow}, \code{temperature}, \code{terrain}. The default is \code{std}.}
-     \item{type}{ type of color palette. One of \code{sequential}, \code{diverge}, \code{qualitative}. The default is \code{qualitative} (see details).}
+     \item{type}{ type of color palette. One of \code{sequential}, \code{diverge}, \code{qualitative}, \code{warm} or \code{cold}. The default is \code{qualitative} (see details).}
      \item{plot}{ Shall an image be plotted? Can be \code{TRUE} or \code{FALSE}, which is the default.}
      \item{\dots}{ Other parameters that are transferred to the HCL routines (see details).}
 }
 
 \details{
-Colors are provided based on the HCL color space, which is used as reference. See package \code{\link{colorspace}}.
+Colors are provided based on the HCL color space, which is used as reference. See package \code{colorspace}.
 Function \code{show_palettes} shows an overview of currently available colorsets.
 }
 
@@ -40,6 +41,7 @@ Function \code{show_palettes} shows an overview of currently available colorsets
 \examples{
 
 zcolors(8,plot=TRUE)
+zcolors(15,parameter="terrain",type="sequential",h2=60,plot=TRUE)
 show_palettes(12)
 
 }
