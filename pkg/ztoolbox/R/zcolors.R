@@ -50,12 +50,12 @@ define_colors <- function(n, p, t, ...){
                          diverge = { pal <- diverge_hcl(n,"Cyan-Magenta", ...) } 
             ),
             rain = switch(t,
-                          sequential = { pal <- sequential_hcl(10, palette = "Purple-Yellow", rev = TRUE, c1 = 70, cmax = 100, l2 = 80, h2 = 500) } ,
+                          sequential = { pal <- sequential_hcl(n, palette = "Purple-Yellow", rev = TRUE, c1 = 70, cmax = 100, l2 = 80, h2 = 500) } ,
                           diverge = { pal <- diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7, ...) } 
             ),
             snow = switch(t,
-                          sequential = { pal <- sequential_hcl(n, "Blues") } ,
-                          diverge = { pal <- diverge_hcl(n, h = c(260, 0), l = c(30, 90), power = 0.7, ...) } 
+                          sequential = { pal <- sequential_hcl(n, h = c(320, 200), c = c(40, 65, 5), l = c(15, 98), power = c(1.2, 1.3), rev = TRUE) } ,
+                          diverge = { pal <- diverge_hcl(n, h = c(255, 12), c = c(50,80), l = c(20, 97), power = c(1,1.3)) } 
             ),
             temperature = switch(t,
                                  sequential = { pal <- sequential_hcl(n, 'Purple-Yellow', p1 = 1.3, c2 = 20, ...) } ,
