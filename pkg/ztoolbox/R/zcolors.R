@@ -31,7 +31,6 @@ show_palettes <- function(n = 10, parameter = c("std","rain","snow","temperature
      rows <- length(names(palettes)) 
      
      # bottom, left, top, right
-     #opar <- par()      # copy current settings
      par(mfrow=c(rows,1), mar = c(0.1,0.4,2,0.5), oma=c(0,0,2,0))
      for(i in 1:rows){
           image(x=matrix(1:n),y=0.1,col=palettes[[i]],
@@ -39,7 +38,6 @@ show_palettes <- function(n = 10, parameter = c("std","rain","snow","temperature
                 axes=FALSE,xlab="",ylab="",srt=45)
      }
      mtext("ZAMG color palettes", line=0, side=3, outer=TRUE)
-     #par(opar)  
 }
 
 
@@ -48,11 +46,11 @@ define_colors <- function(n, p, t, ...){
      switch(p,
             std = switch(t,
                          qualitative = { pal <- qualitative_hcl(n,"Dark3", ...) } ,
-                         sequential = { pal <- sequential_hcl(n, "Lajolla", ...) } ,
+                         sequential = { pal <- sequential_hcl(n, "Purple-Yellow", p1 = 1.3, c2 = 20, rev = TRUE, ...) } ,
                          diverge = { pal <- diverge_hcl(n,"Cyan-Magenta", ...) } 
             ),
             rain = switch(t,
-                          sequential = { pal <- sequential_hcl(n, "Purple-Yellow", p1 = 1.3, c2 = 20, ...) } ,
+                          sequential = { pal <- sequential_hcl(10, palette = "Purple-Yellow", rev = TRUE, c1 = 70, cmax = 100, l2 = 80, h2 = 500) } ,
                           diverge = { pal <- diverge_hcl(n, h = c(260, 0), c = 100, l = c(30, 90), power = 0.7, ...) } 
             ),
             snow = switch(t,
