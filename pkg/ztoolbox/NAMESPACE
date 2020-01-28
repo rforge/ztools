@@ -2,9 +2,12 @@ import("stats","graphics","colorspace")
 export(
   "nearest_gridpoint",
   "zcolors",
-  "show_palettes"
+  "show_palettes",
+  "flush_output"
 )
-#importFrom("EnvStats","eweibull")
+
+importFrom("utils", "flush.console")
+
 
 ## methods 
 #S3method("print", "mevd")
